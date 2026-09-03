@@ -1,0 +1,8 @@
+{
+  "name": "Gemini Reflection Journal",
+  "description": "User-authenticated multi-turn reflection journal and AI conversational summarizer powered by Google Gemini and Cloud Firestore with strict per-user data isolation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

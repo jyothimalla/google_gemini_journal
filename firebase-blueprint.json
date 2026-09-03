@@ -1,0 +1,90 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Authenticated user profile entity",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Firebase Authentication unique user ID"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Display name of the user"
+        },
+        "email": {
+          "type": "string",
+          "description": "User email address"
+        },
+        "photoURL": {
+          "type": "string",
+          "description": "User profile photo URL"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Account initialization timestamp"
+        },
+        "lastLoginAt": {
+          "type": "string",
+          "description": "Timestamp of most recent login"
+        }
+      },
+      "required": ["uid", "email"]
+    },
+    "Interaction": {
+      "title": "Interaction",
+      "description": "A multi-turn reflection journal entry and Gemini conversation thread",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique interaction identifier"
+        },
+        "userId": {
+          "type": "string",
+          "description": "Owner user UID"
+        },
+        "title": {
+          "type": "string",
+          "description": "Interaction title or topic headline"
+        },
+        "mode": {
+          "type": "string",
+          "description": "Processing mode: reflect, summarize, actionable, brainstorm"
+        },
+        "messages": {
+          "type": "array",
+          "description": "Sequential turns of user reflections and Gemini responses"
+        },
+        "summary": {
+          "type": "string",
+          "description": "AI-generated synthesis or key takeaway"
+        },
+        "tags": {
+          "type": "array",
+          "description": "User and AI categorized tags for filtering"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "ISO timestamp of creation"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "ISO timestamp of latest update"
+        }
+      },
+      "required": ["id", "userId", "title", "messages", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Root user profile document"
+    },
+    "/users/{userId}/interactions/{interactionId}": {
+      "schema": "Interaction",
+      "description": "User-isolated reflection interactions subcollection"
+    }
+  }
+}
