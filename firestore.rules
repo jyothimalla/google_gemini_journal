@@ -19,6 +19,11 @@ service cloud.firestore {
         allow read, write: if isOwner(userId) && isValidId(interactionId);
       }
     }
+
+    // Health check collection
+    match /test/{docId} {
+      allow read: if true;
+    }
   }
 }
 
